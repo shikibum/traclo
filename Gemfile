@@ -7,6 +7,7 @@ ruby '2.5.1'
 
 gem 'faraday'
 gem 'slim'
+gem "bulma-rails", "~> 0.7.2"
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.2.1', '>= 5.2.1.1'
