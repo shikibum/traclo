@@ -5,18 +5,22 @@ html
     meta name="viewport" content="width=device-width, initial-scale=1"
     title traclo
   body
-    header
-      h1 traclo
-    container
-      div class="columns"
-        div class="column is-2"
-          ul
-            li アジア
-            li オセアニア
-            li 北アメリカ
-            li 南アメリカ
-            li アフリカ
-            li ヨーロッパ
-        div class="column is-8"
-          - @costumes.each do |costume|
-            = image_tag(costume.primary_image, width: 300)
+    div class="has-background-light"
+      header
+        h1 traclo
+      container
+        div class="columns"
+          div class="column is-2"
+            ul
+              li アジア
+              li オセアニア
+              li 北アメリカ
+              li 南アメリカ
+              li アフリカ
+              li ヨーロッパ
+          div class="column is-10"
+            - @costumes.in_groups_of(4, false) do |costumes|
+              div class="search-results__results-container columns"
+                - costumes.each do |costume|
+                  div class="search-results__results-item column is-one-quarter"
+                    = image_tag(costume.primary_image, width: 260, class: 'result-image')
