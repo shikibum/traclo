@@ -7,7 +7,7 @@ html
   body
     div class="has-background-light"
       header
-        h1 traclo
+        h1 class="title" traclo
       container
         div class="columns"
           div class="column is-2"
@@ -22,6 +22,8 @@ html
             - @costumes.in_groups_of(4, false) do |costumes|
               div class="search-results__results-container columns"
                 - costumes.each do |costume|
-                  div class="search-results__results-item column is-one-fourth"
+                  div class="search-results__results-item column is-one-quarter"
                     div class="search-results__results-image"
                       = image_tag(costume.primary_image, width: 260, class: 'result-image')
+                    div class="search-results__results-title" タイトル
+                    div class="search-results__results-culture" 文化
