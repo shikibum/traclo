@@ -23,7 +23,14 @@ html
               div class="search-results__results-container columns"
                 - costumes.each do |costume|
                   div class="search-results__results-item column is-one-quarter"
+                    a href="#{costume.object_url}"
                     div class="search-results__results-image"
                       = image_tag(costume.primary_image, width: 260, class: 'result-image')
-                    div class="search-results__results-title" タイトル
-                    div class="search-results__results-culture" 文化
+                    div class="search-results__results-title"
+                      = costume.title
+                    div class="search-results__results-culture"
+                      - if costume.culture.present?
+                        = costume.culture
+                      - else
+                        = costume.country + ' ' + costume.region
+
