@@ -8,7 +8,10 @@ ruby '2.5.1'
 gem 'bulma-rails', '~> 0.7.2'
 gem 'faraday'
 gem 'slim'
+<<<<<<< Updated upstream
 gem "autoprefixer-rails"
+=======
+>>>>>>> Stashed changes
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.2.1', '>= 5.2.1.1'
