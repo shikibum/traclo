@@ -20,9 +20,9 @@ html
               li ヨーロッパ
           div class="column is-10"
             - @costumes.in_groups_of(4, false) do |costumes|
-              div class="search-results__results-container"
+              div class="search-results__results-container columns"
                 - costumes.each do |costume|
-                  div class="search-results__results-item"
+                  div class="search-results__results-item column is-one-quarter"
                     a href="#{costume.object_url}"
                     div class="search-results__results-image"
                       = image_tag(costume.primary_image, width: 260, class: 'result-image')
@@ -33,3 +33,4 @@ html
                         = costume.culture
                       - else
                         = costume.country + ' ' + costume.region
+
