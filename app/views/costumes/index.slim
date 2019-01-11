@@ -10,26 +10,25 @@ html
         h1 class="title" traclo
       container
         div class="columns"
-          div class="column is-2"
-            ul
+          div class="side_search column is-narrow"
+            ul class="side_searsh_list" style="width: 200px;"
               li アジア
               li オセアニア
               li 北アメリカ
               li 南アメリカ
               li アフリカ
               li ヨーロッパ
-          div class="column is-10"
-            - @costumes.in_groups_of(4, false) do |costumes|
-              div class="search-results__results-container"
-                - costumes.each do |costume|
-                  div class="search-results__results-item"
-                    a href="#{costume.object_url}"
-                    div class="search-results__results-image"
-                      = image_tag(costume.primary_image, width: 260, class: 'result-image')
-                    div class="search-results__results-title"
-                      = costume.title
-                    div class="search-results__results-culture"
-                      - if costume.culture.present?
-                        = costume.culture
-                      - else
-                        = costume.country + ' ' + costume.region
+          div class="column"
+            div class="search-results__results-container"
+              - @costumes.each do |costume|
+                div class="search-results__results-item"
+                  a href="#{costume.object_url}"
+                  div class="search-results__results-image"
+                    = image_tag(costume.primary_image, width: 260, class: 'result-image')
+                  div class="search-results__results-title"
+                    = costume.title
+                  div class="search-results__results-culture"
+                    - if costume.culture.present?
+                      = costume.culture
+                    - else
+                      = costume.country + ' ' + costume.region

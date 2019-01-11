@@ -17,38 +17,35 @@ container
   background-color: hsl(0, 0%, 98%)
 
 .search-results__results-item a
-    position: absolute
-    display: block
-    top: 0
-    left: 0
-    width: 100%
-    height: 100%
+  position: absolute
+  display: block
+  top: 0
+  left: 0
+  width: 100%
+  height: 100%
 
-@media screen and (min-width: 1200px)
+.search-results__results-title
+  width: 260px
+
+@media screen and (min-width: 1400px) 
+  .search-results__results-container 
+    column-count: 4
+    column-gap: 15px
+    column-fill: auto
+
+@media screen and (min-width: 1112px) and (max-width: 1399px) 
   .search-results__results-container 
     column-count: 3
     column-gap: 15px
     column-fill: auto
 
-@media screen and (min-width: 993px) and (max-width: 1199px)
-  .search-results__results-container 
-    column-count: 3
-    column-gap: 15px
-    column-fill: auto
-
-@media screen and (min-width: 769px) and (max-width: 992px) 
-  .search-results__results-container 
-    column-count: 3
-    column-gap: 15px
-    column-fill: auto
-
-@media screen and (min-width: 481px) and (max-width: 768px)
+@media screen and (min-width: 824px) and (max-width: 1111px)
   .search-results__results-container 
     column-count: 2
     column-gap: 15px
-    column-fill: auto
+    column-fill: auto 
 
-@media screen and (max-width: 480px)
+@media screen and (max-width: 823px)
   .search-results__results-container 
     column-count: 1
     column-gap: 15px
