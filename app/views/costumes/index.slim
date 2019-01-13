@@ -26,10 +26,15 @@ html
                   div class="search-results__results-image"
                     = image_tag(costume.primary_image, width: 260, class: 'result-image')
                   div class="search-results__results-title"
-                    = costume.title
-                  div class="search-results__results-culture"
-                    - if costume.culture.present?
-                      = costume.culture
+                    - if costume.title_japanese.present?
+                      = costume.title_japanese
                     - else
-                      = costume.country + ' ' + costume.region
-                      
+                      = costume.title
+                  div class="search-results__results-culture"
+                    - if costume.culture_japanese.present?
+                      = costume.culture_japanese
+                    - else
+                      - if costume.country_japanese.present?
+                        = costume.country_japanese + ' ' + costume.region_japanese
+                      - else
+                        = costume.country + ' ' + costume.region
