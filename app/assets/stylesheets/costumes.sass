@@ -7,13 +7,18 @@
 
 h1
   font-family: Helvetica Neue
-  
-container
-  display: flex
+
+.layout
+  display: inline-flex
 
 .search-results__results-item
+  break-inside: avoid
+  background-color: #f6f6f6 !important
+  padding: 1em
+  margin-right: 3px
+  margin-bottom: 15px
+  font-size: 14px
   position: relative
-  padding: 20px
   background-color: hsl(0, 0%, 98%)
 
 .search-results__results-item a
@@ -27,7 +32,13 @@ container
 .search-results__results-title
   width: 260px
 
-@media screen and (min-width: 1400px) 
+@media screen and (min-width: 1702px)
+  .search-results__results-container 
+    column-count: 5
+    column-gap: 15px
+    column-fill: auto
+
+@media screen and (min-width: 1400px) and (max-width: 1701px)
   .search-results__results-container 
     column-count: 4
     column-gap: 15px
@@ -50,15 +61,6 @@ container
     column-count: 1
     column-gap: 15px
     column-fill: auto
-
-.search-results__results-item
-  display: inline-block
-  break-inside: avoid
-  background-color: #f6f6f6 !important
-  padding: 1em
-  margin-right: 3px
-  margin-bottom: 15px
-  font-size: 14px
 
 .search-results__results-image img
   margin-top: 1em
