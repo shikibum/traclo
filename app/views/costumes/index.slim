@@ -9,16 +9,16 @@ html
       header
         h1 class="title" traclo
       container
-        div class="columns"
-          div class="side_search column is-narrow"
-            ul class="side_searsh_list" style="width: 200px;"
+        div class="layout columns"
+          div class="layout__side column is-narrow" style="width: 160px;"
+            ul class="search"
               li アジア
               li オセアニア
               li 北アメリカ
               li 南アメリカ
               li アフリカ
               li ヨーロッパ
-          div class="column"
+          div class="layout__main column"
             div class="search-results__results-container"
               - @costumes.each do |costume|
                 div class="search-results__results-item"
@@ -26,10 +26,16 @@ html
                   div class="search-results__results-image"
                     = image_tag(costume.primary_image, width: 260, class: 'result-image')
                   div class="search-results__results-title"
-                    = costume.title
+                    - if costume.title_japanese.present?
+                      = costume.title_japanese
+                    - else
+                      = costume.title
                   div class="search-results__results-culture"
-                    - if costume.culture.present?
+                    - if costume.culture_japanese.present?
+                      = costume.culture_japanese
+                    - else
                       = costume.culture
+                    - if costume.country_japanese.present?
+                      = costume.country_japanese + ' ' + costume.region_japanese
                     - else
                       = costume.country + ' ' + costume.region
-                      

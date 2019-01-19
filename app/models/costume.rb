@@ -11,7 +11,7 @@ class Costume < ApplicationRecord
       country: response['country'],
       region: response['region'],
       object_url: response['objectURL']
-      )
+    )
     costume.save
   end
 end
