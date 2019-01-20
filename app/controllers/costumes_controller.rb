@@ -2,8 +2,13 @@
 
 class CostumesController < ApplicationController
   def index
-    @costumes = Costume.all
+    if params[:continent].present?
+      @costumes = Costume.where(continent: params[:continent])
+    else
+      @costumes = Costume.all
+    end
   end
 
-  def show; end
+  def show
+  end
 end

@@ -12,12 +12,18 @@ html
         div class="layout columns"
           div class="layout__side column is-narrow" style="width: 160px;"
             ul class="search"
-              li アジア
-              li オセアニア
-              li 北アメリカ
-              li 南アメリカ
-              li アフリカ
-              li ヨーロッパ
+              li
+               = link_to 'アジア', costumes_path(continent: 'アジア')
+              li 
+                = link_to 'オセアニア', costumes_path(continent: 'オセアニア')
+              li
+                = link_to 'ヨーロッパ', costumes_path(continent: 'ヨーロッパ')
+              li
+                = link_to 'アフリカ', costumes_path(continent: 'アフリカ')
+              li
+                = link_to '北アメリカ', costumes_path(continent: '北アメリカ')
+              li
+                = link_to '南アメリカ', costumes_path(continent: '南アメリカ')
           div class="layout__main column"
             div class="search-results__results-container"
               - @costumes.each do |costume|
