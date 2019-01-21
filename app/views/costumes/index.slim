@@ -40,11 +40,12 @@ html
                     - else
                       = costume.title
                   div class="search-results__results-culture"
-                    - if costume.culture_japanese.present?
-                      = costume.culture_japanese
-                    - else
-                      = costume.culture
                     - if costume.country_japanese.present?
                       = costume.country_japanese + ' ' + costume.region_japanese
                     - else
                       = costume.country + ' ' + costume.region
+                    - if costume.culture_japanese.present?
+                      = costume.culture_japanese
+                    - else
+                      = costume.culture
+
