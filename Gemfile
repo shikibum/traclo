@@ -9,7 +9,6 @@ gem 'autoprefixer-rails'
 gem 'bulma-rails', '~> 0.7.2'
 gem 'devise'
 gem 'faraday'
-gem 'rails_admin'
 gem 'slim'
 gem 'countries'
 
