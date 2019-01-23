@@ -2,8 +2,13 @@
 
 class Costume < ApplicationRecord
   def self.import(object_id)
+    costume = Costume.initialize_by_object_id(object_id)
+    costume.save
+  end
+
+  def self.initialize_by_object_id(object_id)
     response = CostumeApiClient.return_json(object_id)
-    costume = Costume.new(
+    Costume.new(
       object_id: response['objectID'],
       primary_image: response['primaryImage'],
       title: response['title'],
@@ -12,6 +17,5 @@ class Costume < ApplicationRecord
       region: response['region'],
       object_url: response['objectURL']
     )
-    costume.save
   end
 end

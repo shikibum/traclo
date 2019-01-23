@@ -1,0 +1,4 @@
+div
+ = form_tag(new_admin_costume_path, method: :get) do
+  = text_field_tag :object_id, '', class: 'index__form--text-feild'
+  = submit_tag 'Fetch Object'
