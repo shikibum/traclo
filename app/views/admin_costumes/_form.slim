@@ -1,4 +1,43 @@
 div class='form'
+ .form-items
   = form_for @costume do |f|
-   = f.text_field :title
-   = f.submit
+    .form-item
+      = f.label :object_id
+      = f.text_field :object_id
+    .form-item
+      = f.label :primary_image
+      = f.text_field :primary_image
+    .form-item
+      = f.label :title
+      = f.text_field :title
+    .form-item
+      = f.label :title_japanese
+      = f.text_field :title_japanese
+    .form-item
+      = f.label :culture
+      = f.text_field :culture
+    .form-item
+      = f.label :culture_japanese
+      = f.text_field :culture_japanese
+    .form-item
+      = f.label :country
+      = f.text_field :country
+    .form-item
+      = f.label :country_japanese
+      = f.text_field :country_japanese
+    .form-item
+      = f.label :region
+      = f.text_field :region
+    .form-item
+      = f.label :region_japanese
+      = f.text_field :region_japanese
+    .form-item
+      = f.label :object_url
+      = f.text_field :object_url
+    .form-item
+      = f.label :continent
+      = f.text_field :continent
+    .form-item
+      = f.submit
+      = link_to 'キャンセル'
+

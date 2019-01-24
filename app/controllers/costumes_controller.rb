@@ -13,6 +13,49 @@ class CostumesController < ApplicationController
     end
   end
 
-  def show
+  def create
+    @costume = Costume.new(costume_params)
+    if @costume.save
+      redirect_to admin_costumes_path, notice: "コスチュームを保存しました"
+    else
+      render action: "new"
+    end
   end
+
+  def edit
+    @costume = Costume.find(params[:id])
+  end
+
+  def update
+    @costume = Costume.find(params[:id])
+    if @costume.update(costume_params)
+      redirect_to admin_costumes_path, notice: "コスチュームを更新しました。"
+    else
+      render action: "edit"
+    end
+  end
+
+  def destroy
+    @costume = Costume.find(params[:id])
+    @costume.destroy
+    redirect_to admin_costumes_path, notice: "コスチュームを削除しました。"
+  end
+
+  private
+    def costume_params
+      params.require(:costume).permit(
+        :object_id,
+        :primary_image,
+        :title,
+        :title_japanese,
+        :culture,
+        :culture_japanese,
+        :country,
+        :country_japanese,
+        :region,
+        :region_japanese,
+        :object_url,
+        :continent
+      )
+    end
 end
