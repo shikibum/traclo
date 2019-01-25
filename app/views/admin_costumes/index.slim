@@ -1,20 +1,34 @@
-div class="layout__main column"
-            div class="search-results__results-container"
-              - @costumes.each do |costume|
-                div class="search-results__results-item"
-                  div class="search-results__results-image"
-                    =  link_to image_tag(costume.primary_image, width: 160, class: 'admin-image'), edit_admin_costume_path(costume)
-                  div class="search-results__results-title"
-                    - if costume.title_japanese.present?
-                      = costume.title_japanese
-                    - else
-                      = costume.title
-                  div class="search-results__results-culture"
-                    - if costume.country_japanese.present?
-                      = costume.country_japanese + ' ' + costume.region_japanese
-                    - else
-                      = costume.country + ' ' + costume.region
-                    - if costume.culture_japanese.present?
-                      = costume.culture_japanese
-                    - else
-                      = costume.culture
+doctype html
+html
+  head
+    meta charset="utf-10"
+    meta name="viewport" content="width=device-width, initial-scale=1"
+    title traclo
+  body
+    header
+      div class="layout columns"
+        div class="layout__top column is-full"
+          = link_to '新規作成', 'admin_costumes/fetch'
+    container
+    div class="has-background-light"
+      div class="layout__main column"
+        div class="costumes-items"
+          - @costumes.each do |costume|
+            div class="costume-item"
+              div class="costume-image"
+                =  link_to image_tag(costume.primary_image, width: 180, class: 'admin-image'), edit_admin_costume_path(costume)
+              div class="costume-title"
+                - if costume.title_japanese.present?
+                  = costume.title_japanese
+                - else
+                  = costume.title
+              div class="costume-culture"
+                - if costume.country_japanese.present?
+                  = costume.country_japanese + ' ' + costume.region_japanese
+                - else
+                  = costume.country + ' ' + costume.region
+                - if costume.culture_japanese.present?
+                  = costume.culture_japanese
+                - else
+                  = costume.culture
+
