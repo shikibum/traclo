@@ -5,10 +5,17 @@ class AdminCostumesController < ApplicationController
     @costumes = Costume.all
   end
 
-  def show
+  def fetch
   end
 
-  def fetch
+  def destroy
+    @costume = Costume.find(params[:id])
+    @costume.destroy
+    redirect_to admin_costumes_path, notice: "コスチュームを削除しました。"
+  end
+
+  def edit
+    @costume = Costume.find(params[:id])
   end
 
   def new

@@ -22,10 +22,6 @@ class CostumesController < ApplicationController
     end
   end
 
-  def edit
-    @costume = Costume.find(params[:id])
-  end
-
   def update
     @costume = Costume.find(params[:id])
     if @costume.update(costume_params)
@@ -33,12 +29,6 @@ class CostumesController < ApplicationController
     else
       render action: "edit"
     end
-  end
-
-  def destroy
-    @costume = Costume.find(params[:id])
-    @costume.destroy
-    redirect_to admin_costumes_path, notice: "コスチュームを削除しました。"
   end
 
   private
