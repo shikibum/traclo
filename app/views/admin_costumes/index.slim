@@ -7,28 +7,47 @@ html
   body
     header
       div class="layout columns"
-        div class="layout__top column is-full"
-          = link_to '新規作成', 'admin_costumes/fetch'
+        ul class="layout__top column is-full"
+          li =  link_to '新規作成', 'admin_costumes/fetch'
+          li =  link_to '未翻訳一覧' 
     container
-    div class="has-background-light"
-      div class="layout__main column"
-        div class="costumes-items"
-          - @costumes.each do |costume|
-            div class="costume-item"
-              div class="costume-image"
-                =  link_to image_tag(costume.primary_image, width: 180, class: 'admin-image'), edit_admin_costume_path(costume)
-              div class="costume-title"
-                - if costume.title_japanese.present?
-                  = costume.title_japanese
-                - else
-                  = costume.title
-              div class="costume-culture"
-                - if costume.country_japanese.present?
-                  = costume.country_japanese + ' ' + costume.region_japanese
-                - else
-                  = costume.country + ' ' + costume.region
-                - if costume.culture_japanese.present?
-                  = costume.culture_japanese
-                - else
-                  = costume.culture
+      div class="has-background-light"
+        div class="layout columns"
+          div class="layout__side column is-narrow" style="width: 160px;"
+            ul class="continents"
+              li
+                = link_to 'アジア', admin_costumes_path(continent: 'アジア')
+              li
+                = link_to 'オセアニア', admin_costumes_path(continent: 'オセアニア')
+              li
+                = link_to 'ヨーロッパ', admin_costumes_path(continent: 'ヨーロッパ')
+              li
+                = link_to 'アフリカ', admin_costumes_path(continent: 'アフリカ')
+              li
+                = link_to '北アメリカ', admin_costumes_path(continent: '北アメリカ')
+              li
+                = link_to '南アメリカ', admin_costumes_path(continent: '南アメリカ')
+            ul class="coutries"
+              - extract_culture_and_country_from_costumes(params[:continent]).each do |culture_or_country|
+                li = link_to culture_or_country, admin_costumes_path(culture_or_country: culture_or_country, continent: params[:continent])
+          div class="layout__main column"
+            div class="costumes-items"
+              - @costumes.each do |costume|
+                div class="costume-item"
+                  div class="costume-image"
+                    =  link_to image_tag(costume.primary_image, width: 180, class: 'admin-image'), edit_admin_costume_path(costume)
+                  div class="costume-title"
+                    - if costume.title_japanese.present?
+                      = costume.title_japanese
+                    - else
+                      = costume.title
+                  div class="costume-culture"
+                    - if costume.country_japanese.present?
+                      = costume.country_japanese + ' ' + costume.region_japanese
+                    - else
+                      = costume.country + ' ' + costume.region
+                    - if costume.culture_japanese.present?
+                      = costume.culture_japanese
+                    - else
+                      = costume.culture
 

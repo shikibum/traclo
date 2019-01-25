@@ -1,5 +1,5 @@
 p Edit
 div
   = render 'form'
-  = link_to admin_costume_path, data: { confirm: "本当によろしいですか？" }, method: :delete
+  = link_to admin_costume_path, data: { confirm: "本当によろしいですか？" }, method: :delete, class: 'button is-danger'
    | 削除
