@@ -9,7 +9,7 @@ html
       div class="layout columns"
         ul class="layout__top column is-full"
           li =  link_to '新規作成', 'admin_costumes/fetch'
-          li =  link_to '未翻訳一覧' 
+          li =  link_to '未翻訳一覧', admin_costumes_path(no_title_japanese: true)
     container
       div class="has-background-light"
         div class="layout columns"

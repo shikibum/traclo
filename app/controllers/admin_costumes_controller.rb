@@ -11,6 +11,9 @@ class AdminCostumesController < ApplicationController
                     .where(country_japanese: params[:culture_or_country])
                     .or(Costume.where(culture_japanese: params[:culture_or_country]))
     end
+    if params[:no_title_japanese].present?
+      @costumes = @costumes.where(title_japanese: nil)
+    end
   end
 
   def fetch
