@@ -2,7 +2,7 @@
 
 class AdminCostumesController < ApplicationController
   def index
-    @costumes = Costume.all.order("updated_at DESC")
+    @costumes = Costume.all
     if params[:continent].present?
       @costumes = @costumes.where(continent: params[:continent])
     end
@@ -14,6 +14,7 @@ class AdminCostumesController < ApplicationController
     if params[:no_title_japanese].present?
       @costumes = @costumes.where(title_japanese: nil)
     end
+    @costumes = @costumes.order('updated_at DESC') 
   end
 
   def fetch
