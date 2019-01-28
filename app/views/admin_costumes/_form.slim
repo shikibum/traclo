@@ -4,7 +4,7 @@ div class= 'costume-items'
   div class = 'costume-item'
     div class='form'
     .form-items
-      = form_for @costume do |f|
+      = form_with(model: @costume, local: true) do |f|
         .form-item
           = f.label :object_id, class: 'label'
           = f.text_field :object_id, class: 'input'

@@ -1,5 +1,5 @@
 = render 'navbar'
 div class='fetch_form'
- = form_tag(new_admin_costume_path, method: :get,) do
-  = text_field_tag :object_id, '', class: 'index__form--text-feild input'
-  = submit_tag 'Fetch Object', class: 'button is-link '
+  = form_with(url: new_admin_costume_path, method: :get, local: true) do
+    = text_field_tag :object_id, '', class: 'index__form--text-feild input'
+    = submit_tag 'Fetch Object', class: 'button is-link '
