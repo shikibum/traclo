@@ -27,6 +27,8 @@ html
             - extract_culture_and_country_from_costumes(params[:continent]).each do |culture_or_country|
               li = link_to culture_or_country, admin_costumes_path(culture_or_country: culture_or_country, continent: params[:continent])
         div class="layout__main column"
+          nav class="pagination" role="navigation" aria-label="pagination"
+            = paginate @costumes
           table class="costumes-items"
             thead
               th イメージ
@@ -44,3 +46,5 @@ html
                   td = costume.updated_at.strftime("%Y年%-m月%-d日 %-H時%-M分")
                   td = link_to '編集', edit_admin_costume_path(costume), class:'button is-primary'
                   td = link_to '削除', admin_costume_path(costume), data: { confirm: "本当によろしいですか？" }, method: :delete, class: 'button is-danger'
+          nav class="pagination" role="navigation" aria-label="pagination"
+            = paginate @costumes

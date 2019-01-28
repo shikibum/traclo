@@ -14,7 +14,7 @@ class AdminCostumesController < ApplicationController
     if params[:no_title_japanese].present?
       @costumes = @costumes.where(title_japanese: nil)
     end
-    @costumes = @costumes.order('updated_at DESC') 
+    @costumes = @costumes.order('updated_at DESC').page(params[:page]).per(15)
   end
 
   def fetch

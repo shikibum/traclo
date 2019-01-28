@@ -2,7 +2,7 @@
 
 class CostumesController < ApplicationController
   def index
-    @costumes = Costume.all
+    @costumes = Costume.all.page(params[:page]).per(20)
     if params[:continent].present?
       @costumes = @costumes.where(continent: params[:continent])
     end
