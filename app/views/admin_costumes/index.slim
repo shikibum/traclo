@@ -23,7 +23,7 @@ html
               = link_to '北アメリカ', admin_costumes_path(continent: '北アメリカ')
             li
               = link_to '南アメリカ', admin_costumes_path(continent: '南アメリカ')
-          ul class="coutries"
+          ul class="countries"
             - extract_culture_and_country_from_costumes(params[:continent]).each do |culture_or_country|
               li = link_to culture_or_country, admin_costumes_path(culture_or_country: culture_or_country, continent: params[:continent])
         div class="layout__main column"
