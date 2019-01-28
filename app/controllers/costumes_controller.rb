@@ -2,7 +2,7 @@
 
 class CostumesController < ApplicationController
   def index
-    @costumes = Costume.all.page(params[:page]).per(20)
+    @costumes = Costume.all
     if params[:continent].present?
       @costumes = @costumes.where(continent: params[:continent])
     end
@@ -11,6 +11,7 @@ class CostumesController < ApplicationController
                     .where(country_japanese: params[:culture_or_country])
                     .or(Costume.where(culture_japanese: params[:culture_or_country]))
     end
+    @costumes = @costumes.page(params[:page]).per(20)
   end
 
   def create
