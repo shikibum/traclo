@@ -11,6 +11,7 @@ gem 'devise'
 gem 'faraday'
 gem 'slim'
 gem 'countries'
+gem 'kaminari'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.2.1', '>= 5.2.1.1'
