@@ -12,7 +12,7 @@ class AdminCostumesController < ApplicationController
                     .or(Costume.where(culture_japanese: params[:culture_or_country]))
     end
     if params[:no_title_japanese].present?
-      @costumes = @costumes.where(title_japanese: nil)
+      @costumes = Costume.where(title_japanese: nil)
     end
     @costumes = @costumes.order('updated_at DESC').page(params[:page]).per(15)
   end
