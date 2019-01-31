@@ -22,13 +22,9 @@ class Costume < ApplicationRecord
   def self.initialize_by_title_url(title_url)
     response = CostumeApiClient.get_image_url(title_url)
     Costume.new(
-      object_id: response['objectID'],
-      primary_image: response['primaryImage'],
-      title: response['title'],
-      culture: response['culture'],
-      country: response['country'],
-      region: response['region'],
-      object_url: response['objectURL']
+      primary_image: response.dig('query', 'pages', '-1', 'imageinfo')[0]['url'],
+      title: response.dig('query', 'pages', '-1', 'title').delete('ファイル:'),
+      object_url: response.dig('query', 'pages', '-1', 'imageinfo')[0]['descriptionurl']
     )
   end
 end

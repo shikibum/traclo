@@ -7,7 +7,9 @@ class CostumeApiClient
   end
 
   def self.get_image_url(title_url)
-    response = Faraday.get 'https://ja.wikipedia.org/w/api.php', format: 'json', action: 'query', titles: "Image:#{title_url}", prop: 'imageinfo', iiprop: 'url'
+    uri = URI.parse(title_url).path.sub(%r{/wiki/File:(.+)\??}, '\1')
+    title = CGI.unescape(uri)
+    response = Faraday.get 'https://ja.wikipedia.org/w/api.php', format: 'json', action: 'query', titles: "Image:#{title}", prop: 'imageinfo', iiprop: 'url'
     JSON.parse(response.body)
   end
 end

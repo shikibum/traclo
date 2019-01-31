@@ -31,6 +31,10 @@ class AdminCostumesController < ApplicationController
   end
 
   def new
-    @costume = Costume.initialize_by_object_id(params[:object_id])
+    if params[:object_id].include?('https')
+      @costume = Costume.initialize_by_title_url(params[:object_id])
+    else
+      @costume = Costume.initialize_by_object_id(params[:object_id])
+    end
   end
 end
