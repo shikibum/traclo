@@ -2,7 +2,7 @@
 
 class AdminCostumesController < ApplicationController
   def index
-    @costumes = Costume.where.not(title_japanese: nil)
+    @costumes = Costume.all
     if params[:continent].present?
       @costumes = @costumes.where(continent: params[:continent])
     end
