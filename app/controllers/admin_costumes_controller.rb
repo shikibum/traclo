@@ -3,27 +3,22 @@
 class AdminCostumesController < ApplicationController
   def index
     @costumes = Costume.all
-    if params[:continent].present?
-      @costumes = @costumes.where(continent: params[:continent])
-    end
+    @costumes = @costumes.where(continent: params[:continent]) if params[:continent].present?
     if params[:culture_or_country].present?
       @costumes = @costumes
-                    .where(country_japanese: params[:culture_or_country])
-                    .or(Costume.where(culture_japanese: params[:culture_or_country]))
+                  .where(country_japanese: params[:culture_or_country])
+                  .or(Costume.where(culture_japanese: params[:culture_or_country]))
     end
-    if params[:no_title_japanese].present?
-      @costumes = Costume.where(title_japanese: nil)
-    end
+    @costumes = Costume.where(title_japanese: nil) if params[:no_title_japanese].present?
     @costumes = @costumes.order('updated_at DESC').page(params[:page]).per(15)
   end
 
-  def fetch
-  end
+  def fetch; end
 
   def destroy
     @costume = Costume.find(params[:id])
     @costume.destroy
-    redirect_to admin_costumes_path, notice: "コスチュームを削除しました。"
+    redirect_to admin_costumes_path, notice: 'コスチュームを削除しました。'
   end
 
   def edit
@@ -31,10 +26,10 @@ class AdminCostumesController < ApplicationController
   end
 
   def new
-    if params[:object_id].include?('https')
-      @costume = Costume.initialize_by_title_url(params[:object_id])
-    else
-      @costume = Costume.initialize_by_object_id(params[:object_id])
-    end
+    @costume = if params[:object_id].include?('https')
+                 Costume.initialize_by_title_url(params[:object_id])
+               else
+                 Costume.initialize_by_object_id(params[:object_id])
+               end
   end
 end

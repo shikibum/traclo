@@ -43,8 +43,8 @@ html
                   td = costume.object_id
                   td = costume.title
                   td = costume.title_japanese
-                  td = costume.updated_at.strftime("%Y年%-m月%-d日 %-H時%-M分")
+                  td = costume.updated_at.strftime('%Y年%-m月%-d日 %-H時%-M分')
                   td = link_to '編集', edit_admin_costume_path(costume), class:'button is-primary'
-                  td = link_to '削除', admin_costume_path(costume), data: { confirm: "本当によろしいですか？" }, method: :delete, class: 'button is-danger'
+                  td = link_to '削除', admin_costume_path(costume), data: { confirm: '本当によろしいですか？' }, method: :delete, class: 'button is-danger'
           nav class="pagination" role="navigation" aria-label="pagination"
             = paginate @costumes
