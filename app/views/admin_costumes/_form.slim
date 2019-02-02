@@ -1,0 +1,47 @@
+div class= 'costume-items'
+  div class = 'costume-item'
+    = image_tag(@costume.primary_image, width: 260, class: 'costume-image')
+  div class = 'costume-item'
+    div class='form'
+    .form-items
+      = form_with(model: @costume, local: true) do |f|
+        .form-item
+          = f.label :object_id, class: 'label'
+          = f.text_field :object_id, class: 'input'
+        .form-item
+          = f.label :primary_image, class: 'label'
+          = f.text_field :primary_image, class: 'input'
+        .form-item
+          = f.label :title, class: 'label'
+          = f.text_field :title, class: 'input'
+        .form-item
+          = f.label :title_japanese, class: 'label'
+          = f.text_field :title_japanese, class: 'input'
+        .form-item
+          = f.label :culture, class: 'label'
+          = f.text_field :culture, class: 'input'
+        .form-item
+          = f.label :culture_japanese, class: 'label'
+          = f.text_field :culture_japanese, class: 'input'
+        .form-item
+          = f.label :country, class: 'label'
+          = f.text_field :country, class: 'input'
+        .form-item
+          = f.label :country_japanese, class: 'label'
+          = f.text_field :country_japanese, class: 'input'
+        .form-item
+          = f.label :region, class: 'label'
+          = f.text_field :region, class: 'input'
+        .form-item
+          = f.label :region_japanese, class: 'label'
+          = f.text_field :region_japanese, class: 'input'
+        .form-item
+          = f.label :object_url, class: 'label'
+          = f.text_field :object_url, class: 'input'
+        .form-item class='select'
+          = f.label :continent, class: 'label'
+          = f.select :continent, %i[アジア オセアニア ヨーロッパ アフリカ 北アメリカ 南アメリカ]
+        div class='buttons'
+          .form-item
+            = f.submit class: 'button is-link'
+            = link_to 'キャンセル', admin_costumes_path, class: 'button is-text'

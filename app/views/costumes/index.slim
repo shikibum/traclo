@@ -28,6 +28,8 @@ html
               - extract_culture_and_country_from_costumes(params[:continent]).each do |culture_or_country|
                 li = link_to culture_or_country, costumes_path(culture_or_country: culture_or_country, continent: params[:continent])
           div class="layout__main column"
+            nav class="pagination" role="navigation" aria-label="pagination"
+              = paginate @costumes
             div class="search-results__results-container"
               - @costumes.each do |costume|
                 div class="search-results__results-item"
@@ -48,4 +50,5 @@ html
                       = costume.culture_japanese
                     - else
                       = costume.culture
-
+            nav class="pagination" role="navigation" aria-label="pagination"
+              = paginate @costumes

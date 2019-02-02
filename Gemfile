@@ -7,9 +7,10 @@ ruby '2.5.1'
 
 gem 'autoprefixer-rails'
 gem 'bulma-rails', '~> 0.7.2'
+gem 'countries'
 gem 'devise'
 gem 'faraday'
-gem 'rails_admin'
+gem 'kaminari'
 gem 'slim'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
