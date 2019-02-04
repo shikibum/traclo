@@ -1,6 +1,12 @@
 # frozen_string_literal: true
 
 class Costume < ApplicationRecord
+  validates :primary_image, presence: true
+  validates :title, presence: true
+  validates :object_url, presence: true
+
+  before_save :blank_to_nil
+
   def self.import(object_id)
     costume = Costume.initialize_by_object_id(object_id)
     costume.save
@@ -26,5 +32,11 @@ class Costume < ApplicationRecord
       title: response.dig('query', 'pages', '-1', 'title').delete('ファイル:'),
       object_url: response.dig('query', 'pages', '-1', 'imageinfo')[0]['descriptionurl']
     )
+  end
+
+  private
+
+  def blank_to_nil
+    self.title_japanese = nil if title_japanese.blank?
   end
 end
