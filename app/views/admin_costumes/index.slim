@@ -39,7 +39,7 @@ html
             tbody
               - @costumes.each do |costume|
                 tr class="costume-item"
-                  td = link_to image_tag(costume.primary_image, width: 120, class: 'admin-image'), edit_admin_costume_path(costume)
+                  td = link_to image_tag(costume.original_image_url, width: 120, class: 'admin-image'), edit_admin_costume_path(costume)
                   td = costume.object_id
                   td = costume.title
                   td = costume.title_japanese

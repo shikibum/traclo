@@ -1,6 +1,6 @@
 div class= 'costume-items'
   div class = 'costume-item'
-    = image_tag(@costume.primary_image, width: 260, class: 'costume-image')
+    = image_tag(@costume.original_image_url, width: 260, class: 'costume-image')
   div class = 'costume-item'
     div class='form'
     .form-items
@@ -9,8 +9,8 @@ div class= 'costume-items'
           = f.label :object_id, class: 'label'
           = f.text_field :object_id, class: 'input'
         .form-item
-          = f.label :primary_image, class: 'label'
-          = f.text_field :primary_image, class: 'input'
+          = f.label :original_image_url, class: 'label'
+          = f.text_field :original_image_url, class: 'input'
         .form-item
           = f.label :title, class: 'label'
           = f.text_field :title, class: 'input'

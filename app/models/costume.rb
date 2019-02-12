@@ -1,9 +1,11 @@
 # frozen_string_literal: true
 
 class Costume < ApplicationRecord
-  validates :primary_image, presence: true
+  validates :original_image_url, presence: true
   validates :title, presence: true
   validates :object_url, presence: true
+
+  mount_uploader :image, ImageUploader
 
   before_save :blank_to_nil
 
@@ -16,7 +18,7 @@ class Costume < ApplicationRecord
     response = CostumeApiClient.return_json(object_id)
     Costume.new(
       object_id: response['objectID'],
-      primary_image: response['primaryImage'],
+      original_image_url: response['primaryImage'],
       title: response['title'],
       culture: response['culture'],
       country: response['country'],
@@ -28,7 +30,7 @@ class Costume < ApplicationRecord
   def self.initialize_by_title_url(title_url)
     response = CostumeApiClient.get_image_url(title_url)
     Costume.new(
-      primary_image: response.dig('query', 'pages', '-1', 'imageinfo')[0]['url'],
+      original_image_url: response.dig('query', 'pages', '-1', 'imageinfo')[0]['url'],
       title: response.dig('query', 'pages', '-1', 'title').delete('ファイル:'),
       object_url: response.dig('query', 'pages', '-1', 'imageinfo')[0]['descriptionurl']
     )
