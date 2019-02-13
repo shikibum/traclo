@@ -8,6 +8,8 @@ class Costume < ApplicationRecord
   mount_uploader :image, ImageUploader
 
   before_save :blank_to_nil
+  before_validation :download_image
+
 
   def self.import(object_id)
     costume = Costume.initialize_by_object_id(object_id)
@@ -40,5 +42,11 @@ class Costume < ApplicationRecord
 
   def blank_to_nil
     self.title_japanese = nil if title_japanese.blank?
+  end
+
+  def download_image
+    return if image.present?
+    self.remote_image_request_header = { 'Cookie' => 'incap_ses_637_1661977=c/kVUPxdLlTS2aSFBhXXCL2/YlwAAAAA90oj00SriHlKwXMQX45xkg==' }
+    self.remote_image_url = self.original_image_url
   end
 end
