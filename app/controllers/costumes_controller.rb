@@ -35,7 +35,7 @@ class CostumesController < ApplicationController
   def costume_params
     params.require(:costume).permit(
       :object_id,
-      :primary_image,
+      :original_image_url,
       :title,
       :title_japanese,
       :culture,

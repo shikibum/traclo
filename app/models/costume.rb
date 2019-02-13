@@ -1,11 +1,15 @@
 # frozen_string_literal: true
 
 class Costume < ApplicationRecord
-  validates :primary_image, presence: true
+  validates :original_image_url, presence: true
   validates :title, presence: true
   validates :object_url, presence: true
 
+  mount_uploader :image, ImageUploader
+
   before_save :blank_to_nil
+  before_validation :download_image
+
 
   def self.import(object_id)
     costume = Costume.initialize_by_object_id(object_id)
@@ -16,7 +20,7 @@ class Costume < ApplicationRecord
     response = CostumeApiClient.return_json(object_id)
     Costume.new(
       object_id: response['objectID'],
-      primary_image: response['primaryImage'],
+      original_image_url: response['primaryImage'],
       title: response['title'],
       culture: response['culture'],
       country: response['country'],
@@ -28,7 +32,7 @@ class Costume < ApplicationRecord
   def self.initialize_by_title_url(title_url)
     response = CostumeApiClient.get_image_url(title_url)
     Costume.new(
-      primary_image: response.dig('query', 'pages', '-1', 'imageinfo')[0]['url'],
+      original_image_url: response.dig('query', 'pages', '-1', 'imageinfo')[0]['url'],
       title: response.dig('query', 'pages', '-1', 'title').delete('ファイル:'),
       object_url: response.dig('query', 'pages', '-1', 'imageinfo')[0]['descriptionurl']
     )
@@ -38,5 +42,11 @@ class Costume < ApplicationRecord
 
   def blank_to_nil
     self.title_japanese = nil if title_japanese.blank?
+  end
+
+  def download_image
+    return if image.present?
+    self.remote_image_request_header = { 'Cookie' => 'incap_ses_637_1661977=c/kVUPxdLlTS2aSFBhXXCL2/YlwAAAAA90oj00SriHlKwXMQX45xkg==' }
+    self.remote_image_url = self.original_image_url
   end
 end
