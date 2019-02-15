@@ -2,7 +2,10 @@
 
 Rails.application.routes.draw do
   devise_for :admins
-  resources :costumes
+
+  resources :costumes do
+    root 'costumes#index'
+  end
 
   resources :admin_costumes do
     collection do
