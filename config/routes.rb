@@ -3,9 +3,8 @@
 Rails.application.routes.draw do
   devise_for :admins
 
-  resources :costumes do
-    root 'costumes#index'
-  end
+  resources :costumes
+  root 'costumes#index'
 
   resources :admin_costumes do
     collection do
