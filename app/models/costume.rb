@@ -46,7 +46,8 @@ class Costume < ApplicationRecord
 
   def download_image
     return if picture.present?
+
     self.remote_picture_request_header = { 'Cookie' => 'incap_ses_637_1661977=c/kVUPxdLlTS2aSFBhXXCL2/YlwAAAAA90oj00SriHlKwXMQX45xkg==' }
-    self.remote_picture_url = self.original_image_url
+    self.remote_picture_url = original_image_url
   end
 end
