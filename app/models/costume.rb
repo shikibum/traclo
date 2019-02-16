@@ -6,6 +6,7 @@ class Costume < ApplicationRecord
   validates :object_url, presence: true
 
   mount_uploader :image, ImageUploader
+  mount_uploader :picture, PictureUploader
 
   before_save :blank_to_nil
   before_validation :download_image
