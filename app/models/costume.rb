@@ -11,7 +11,6 @@ class Costume < ApplicationRecord
   before_save :blank_to_nil
   before_validation :download_image
 
-
   def self.import(object_id)
     costume = Costume.initialize_by_object_id(object_id)
     costume.save
@@ -46,8 +45,8 @@ class Costume < ApplicationRecord
   end
 
   def download_image
-    return if image.present?
-    self.remote_image_request_header = { 'Cookie' => 'incap_ses_637_1661977=c/kVUPxdLlTS2aSFBhXXCL2/YlwAAAAA90oj00SriHlKwXMQX45xkg==' }
-    self.remote_image_url = self.original_image_url
+    return if picture.present?
+    self.remote_picture_request_header = { 'Cookie' => 'incap_ses_637_1661977=c/kVUPxdLlTS2aSFBhXXCL2/YlwAAAAA90oj00SriHlKwXMQX45xkg==' }
+    self.remote_picture_url = self.original_image_url
   end
 end

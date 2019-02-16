@@ -35,7 +35,7 @@ html
                 div class="search-results__results-item"
                   a href="#{costume.object_url}"
                   div class="search-results__results-image"
-                    = image_tag costume.image_url(:thumb), class: 'result-image'
+                    = cl_image_tag costume.picture, width: 260, crop: 'fill', class: 'result-image'
                   div class="search-results__results-title"
                     - if costume.title_japanese.present?
                       = costume.title_japanese
