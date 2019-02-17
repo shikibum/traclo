@@ -1,54 +1,48 @@
-doctype html
-html
-  head
-    meta charset="utf-10"
-    meta name="viewport" content="width=device-width, initial-scale=1"
-    title traclo
-  body
-    div class="has-background-light"
-      header
-        h1 class="title" traclo
-      container
-        div class="layout columns"
-          div class="layout__side column is-narrow" style="width: 160px;"
-            ul class="continents"
-              li
-                = link_to 'アジア', costumes_path(continent: 'アジア')
-              li
-                = link_to 'オセアニア', costumes_path(continent: 'オセアニア')
-              li
-                = link_to 'ヨーロッパ', costumes_path(continent: 'ヨーロッパ')
-              li
-                = link_to 'アフリカ', costumes_path(continent: 'アフリカ')
-              li
-                = link_to '北アメリカ', costumes_path(continent: '北アメリカ')
-              li
-                = link_to '南アメリカ', costumes_path(continent: '南アメリカ')
-            ul class="coutries"
-              - extract_culture_and_country_from_costumes(params[:continent]).each do |culture_or_country|
-                li = link_to culture_or_country, costumes_path(culture_or_country: culture_or_country, continent: params[:continent])
-          div class="layout__main column"
-            nav class="pagination" role="navigation" aria-label="pagination"
-              = paginate @costumes
-            div class="search-results__results-container"
-              - @costumes.each do |costume|
-                div class="search-results__results-item"
-                  a href="#{costume.object_url}"
-                  div class="search-results__results-image"
+div class="has-background-light"
+  header
+    h1 class="title" traclo
+  container
+    div class="layout columns"
+      div class="layout__side column is-narrow" style="width: 160px;"
+        ul class="continents"
+          li
+            = link_to 'アジア', costumes_path(continent: 'アジア')
+          li
+            = link_to 'オセアニア', costumes_path(continent: 'オセアニア')
+          li
+            = link_to 'ヨーロッパ', costumes_path(continent: 'ヨーロッパ')
+          li
+            = link_to 'アフリカ', costumes_path(continent: 'アフリカ')
+          li
+            = link_to '北アメリカ', costumes_path(continent: '北アメリカ')
+          li
+            = link_to '南アメリカ', costumes_path(continent: '南アメリカ')
+        ul class="coutries"
+          - extract_culture_and_country_from_costumes(params[:continent]).each do |culture_or_country|
+            li = link_to culture_or_country, costumes_path(culture_or_country: culture_or_country, continent: params[:continent])
+      div class="layout__main column"
+        nav class="pagination" role="navigation" aria-label="pagination"
+          = paginate @costumes
+        div class="search-results__results-container"
+          - @costumes.each do |costume|
+            div class="search-results__results-item"
+              a href="#{costume.object_url}"
+                div class="search-results__results-image"
+                  a href="#{cl_image_path costume.picture, width: 800, crop: 'fill'}" class="luminous"
                     = cl_image_tag costume.picture, width: 260, crop: 'fill', class: 'result-image'
-                  div class="search-results__results-title"
-                    - if costume.title_japanese.present?
-                      = costume.title_japanese
-                    - else
-                      = costume.title
-                  div class="search-results__results-culture"
-                    - if costume.country_japanese.present?
-                      = costume.country_japanese + ' ' + costume.region_japanese
-                    - else
-                      = costume.country + ' ' + costume.region
-                    - if costume.culture_japanese.present?
-                      = costume.culture_japanese
-                    - else
-                      = costume.culture
-            nav class="pagination" role="navigation" aria-label="pagination"
-              = paginate @costumes
+                div class="search-results__results-title"
+                  - if costume.title_japanese.present?
+                    = costume.title_japanese
+                  - else
+                    = costume.title
+                div class="search-results__results-culture"
+                  - if costume.country_japanese.present?
+                    = costume.country_japanese + ' ' + costume.region_japanese
+                  - else
+                    = costume.country + ' ' + costume.region
+                  - if costume.culture_japanese.present?
+                    = costume.culture_japanese
+                  - else
+                    = costume.culture
+        nav class="pagination" role="navigation" aria-label="pagination"
+          = paginate @costumes
