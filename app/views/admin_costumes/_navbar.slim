@@ -2,6 +2,7 @@
       nav class="navbar" role="navigation" aria-label="main navigation"
         div class="layout navbar-brand"
           ul class="layout__top navbar-menu"
+            li = link_to 'Traclo Top', costumes_path, class: 'navbar-item'
             li = link_to 'Admin Top', admin_costumes_path, class: 'navbar-item'
             li = link_to '新規作成', 'admin_costumes/fetch', class: 'navbar-item'
             li = link_to '未翻訳一覧', admin_costumes_path(no_title_japanese: true), class: 'navbar-item'

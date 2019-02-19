@@ -1,6 +1,6 @@
 div class="has-background-light"
   header
-    h1 class="title" traclo
+    = render 'header'
   container
     div class="layout columns"
       div class="layout__side column is-narrow" style="width: 160px;"
@@ -43,5 +43,10 @@ div class="has-background-light"
                   = costume.culture_japanese
                 - else
                   = costume.culture
+              div class="search-results__results-date"
+                - if costume.date_japanese.present?
+                  = costume.date_japanese
+                - else
+                  = costume.date
         nav class="pagination" role="navigation" aria-label="pagination"
           = paginate @costumes
