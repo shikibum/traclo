@@ -30,6 +30,10 @@ class CostumesController < ApplicationController
     end
   end
 
+  def show
+    @costume = Costume.find(params[:id])
+  end
+
   private
 
   def costume_params
