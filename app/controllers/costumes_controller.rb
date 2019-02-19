@@ -49,7 +49,9 @@ class CostumesController < ApplicationController
       :region,
       :region_japanese,
       :object_url,
-      :continent
-    )
+      :continent,
+      :date,
+      :date_japanese
+      )
   end
 end

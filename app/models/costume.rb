@@ -25,6 +25,7 @@ class Costume < ApplicationRecord
       country: response['country'],
       region: response['region'],
       object_url: response['objectURL'],
+      date: response['objectDate']
     )
   end
 
