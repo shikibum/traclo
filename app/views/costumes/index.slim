@@ -26,23 +26,22 @@ div class="has-background-light"
         div class="search-results__results-container"
           - @costumes.each do |costume|
             div class="search-results__results-item"
-              a href="#{costume.object_url}"
-                div class="search-results__results-image"
-                  a href="#{cl_image_path costume.picture, width: 800, crop: 'fill'}" class="luminous"
-                    = cl_image_tag costume.picture, width: 260, crop: 'fill', class: 'result-image'
-                div class="search-results__results-title"
-                  - if costume.title_japanese.present?
-                    = costume.title_japanese
-                  - else
-                    = costume.title
-                div class="search-results__results-culture"
-                  - if costume.country_japanese.present?
-                    = costume.country_japanese + ' ' + costume.region_japanese
-                  - else
-                    = costume.country + ' ' + costume.region
-                  - if costume.culture_japanese.present?
-                    = costume.culture_japanese
-                  - else
-                    = costume.culture
+              div class="search-results__results-image"
+                = link_to costume
+                  = cl_image_tag costume.picture, width: 260, crop: 'fill', class: 'result-image'
+              div class="search-results__results-title"
+                - if costume.title_japanese.present?
+                  = costume.title_japanese
+                - else
+                  = costume.title
+              div class="search-results__results-culture"
+                - if costume.country_japanese.present?
+                  = costume.country_japanese + ' ' + costume.region_japanese
+                - else
+                  = costume.country + ' ' + costume.region
+                - if costume.culture_japanese.present?
+                  = costume.culture_japanese
+                - else
+                  = costume.culture
         nav class="pagination" role="navigation" aria-label="pagination"
           = paginate @costumes
