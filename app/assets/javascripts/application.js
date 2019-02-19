@@ -12,5 +12,4 @@
 //
 //= require rails-ujs
 //= require activestorage
-//= require Luminous.min
 //= require_tree .
