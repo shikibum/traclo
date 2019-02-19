@@ -5,11 +5,10 @@ class Costume < ApplicationRecord
   validates :title, presence: true
   validates :object_url, presence: true
 
-  mount_uploader :image, ImageUploader
   mount_uploader :picture, PictureUploader
 
   before_save :blank_to_nil
-  before_validation :download_image
+  before_validation :download_picture
 
   def self.import(object_id)
     costume = Costume.initialize_by_object_id(object_id)
@@ -25,7 +24,7 @@ class Costume < ApplicationRecord
       culture: response['culture'],
       country: response['country'],
       region: response['region'],
-      object_url: response['objectURL']
+      object_url: response['objectURL'],
     )
   end
 
@@ -44,7 +43,7 @@ class Costume < ApplicationRecord
     self.title_japanese = nil if title_japanese.blank?
   end
 
-  def download_image
+  def download_picture
     return if picture.present?
 
     self.remote_picture_request_header = { 'Cookie' => 'incap_ses_637_1661977=c/kVUPxdLlTS2aSFBhXXCL2/YlwAAAAA90oj00SriHlKwXMQX45xkg==' }
