@@ -1,42 +1,40 @@
-header
-  = render 'header'
-container
-  .layout.columns
-    .layout__side.column.menu.is-2-desktop
-      ul.continents.menu-list
-        li
-          = link_to 'アジア', costumes_path(continent: 'アジア')
-        li
-          = link_to 'オセアニア', costumes_path(continent: 'オセアニア')
-        li
-          = link_to 'ヨーロッパ', costumes_path(continent: 'ヨーロッパ')
-        li
-          = link_to 'アフリカ', costumes_path(continent: 'アフリカ')
-        li
-          = link_to '北アメリカ', costumes_path(continent: '北アメリカ')
-        li
-          = link_to '南アメリカ', costumes_path(continent: '南アメリカ')
-          ul.coutries.menu-list
-            - extract_culture_and_country_from_costumes(params[:continent]).each do |culture_or_country|
-              li = link_to culture_or_country, costumes_path(culture_or_country: culture_or_country, continent: params[:continent])
-    .layout__main.column.is-8-desktop
-      .pagination
-        nav.pagination.is-centered role="navigation" aria-label="pagination"
+div class="has-background-light"
+  header
+    = render 'header'
+  container
+    div class="layout columns"
+      div class="layout__side column is-narrow" style="width: 160px;"
+        ul class="continents"
+          li
+            = link_to 'アジア', costumes_path(continent: 'アジア')
+          li
+            = link_to 'オセアニア', costumes_path(continent: 'オセアニア')
+          li
+            = link_to 'ヨーロッパ', costumes_path(continent: 'ヨーロッパ')
+          li
+            = link_to 'アフリカ', costumes_path(continent: 'アフリカ')
+          li
+            = link_to '北アメリカ', costumes_path(continent: '北アメリカ')
+          li
+            = link_to '南アメリカ', costumes_path(continent: '南アメリカ')
+        ul class="coutries"
+          - extract_culture_and_country_from_costumes(params[:continent]).each do |culture_or_country|
+            li = link_to culture_or_country, costumes_path(culture_or_country: culture_or_country, continent: params[:continent])
+      div class="layout__main column"
+        nav class="pagination" role="navigation" aria-label="pagination"
           = paginate @costumes
-      .search-results__results-container
-        - @costumes.each do |costume|
-          .search-results__results-item.card
-            .search-results__results-image.card-image
-              figure.image
+        div class="search-results__results-container"
+          - @costumes.each do |costume|
+            div class="search-results__results-item"
+              div class="search-results__results-image"
                 = link_to costume
                   = cl_image_tag costume.picture, width: 260, crop: 'fill', class: 'result-image'
-            .card-content
-              .search-results__results-title
+              div class="search-results__results-title"
                 - if costume.title_japanese.present?
                   = costume.title_japanese
                 - else
                   = costume.title
-              .search-results__results-culture
+              div class="search-results__results-culture"
                 - if costume.country_japanese.present?
                   = costume.country_japanese + ' ' + costume.region_japanese
                 - else
@@ -45,11 +43,10 @@ container
                   = costume.culture_japanese
                 - else
                   = costume.culture
-              .search-results__results-date
+              div class="search-results__results-date"
                 - if costume.date_japanese.present?
                   = costume.date_japanese
                 - else
                   = costume.date
-      .pagination
-        nav.pagination role="navigation" aria-label="pagination"
+        nav class="pagination" role="navigation" aria-label="pagination"
           = paginate @costumes
